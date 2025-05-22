@@ -14,7 +14,7 @@ To generate the results in the two folders above, scripts are provided in the `S
 - `script_fig3u4.py`: to prpoduce results used in Figure 3 and Figure 4A-B
 Concrete details on how to run each script, as well as a description of input parameters and output files are provided in each script.
 
-The `MODULEs` folder contains the core code of the simulations, in three document object-oriented scripts:
+The `MODULEs` folder contains the core code of the simulations, in three documentedobject-oriented scripts:
 - `IBS_2sexes_mutation_class.py`: contains objects and methods to implement and keep track of mutations.
 - `IBS_2sexes_population_class.py`: contains objects and methods to store and evolve a population.
 - `IBS_2sexes_mutation_class.py`: contains objects and methods to run simulations of a given population.

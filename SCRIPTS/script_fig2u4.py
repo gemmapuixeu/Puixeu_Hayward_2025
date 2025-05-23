@@ -6,10 +6,11 @@ This script is used to run various sets of simulations, used to produce results 
 Essentially, the population is burned in for 'btN' generations where sex-specific optima are both at 0. After that, a shift in sex-specific optima occurs and the population adapts. The output file reports the average and standadrd error across 'replicate' replicates of a few variables for 'generationsN'*N generations after the shift.
 
 To run the script in the command line, type:
-python script_fig2u4.py replicates N VA rfm oFi oMi generationsN E2Ns selmode btN samplehow
+python script_fig2u4.py replicates N VA rfm oFi oMi generationsN E2Ns selmode btN samplehow path
 
 A usage example would be:
-python script_fig2u4.py 200 1000 40 0.95 0.15 0.15 10 1 WFHW 10 full
+module load python
+python script_fig2u4.py 200 1000 40 0.95 0.15 0.15 10 1 WFHW 10 full full_path_to_ALREADY_CREATED_results_directory/
 
 #### INPUT
 
@@ -25,6 +26,7 @@ The arguments it takes correspond to:
     - selmode: the type of simulations we want to run. Options are 'exact_fertility', 'exact_viability', 'WF', 'WFHW' (WFHW)
     - btN: the population will be burned-in for Ngen*N generations (10)
     - samplehow: choose whether we want to sample the population every generation or only sparsely. Options are 'full' and 'sparse' (full)
+    - path: the path where the results will be stored. The directory should be created before running the simulations. It should be of the type full_path_to_results_directory/
 
 We generally use the default values indicated in brackets for each argument, and run simulations for various combinations of those parameters where no default value is indicated:
     - rfm: typically, for rfm=0.5,0.8,0.95

@@ -10,7 +10,8 @@ To run the script in the command line, type:
 python script_fig1.py N Ngen VA oF oM E2Ns rfm reps simtype path
 
 A usage example would be:
-python script_fig1.py 1000 100 9 0 0 1 0.5 200 WFHW full_path_to_current_directory/RESULTS/
+module load python
+python script_fig1.py 1000 100 9 0 0 1 0.5 200 WFHW full_path_to_ALREADY_CREATED_results_directory/
 
 ### INPUT
 
@@ -23,7 +24,7 @@ The arguments it takes correspond to:
     - rfm: intersex correlation
     - reps: number of replicates
     - simtype: the type of simulations we want to run. Options are: exact_fertility, exact_viability, WF, WFHW, WFxd2 (see Supplementary Section 4). WFxd2 simulations correspond to WF simulations.
-    - path: the path where the results will be stored. It should be of the type full_path_to_current_directory/results_folder/
+    - path: the path where the results will be stored. The directory should be created before running the simulations. It should be of the type full_path_to_results_directory/
 
 # OUTPUT
 

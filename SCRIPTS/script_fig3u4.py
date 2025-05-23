@@ -8,10 +8,11 @@ Essentially, the population is burned in for 3/2*'generations' generations where
 Adaptation follows a 2-sex Wright-Fisher Hardy-Weinberg selection process.
 
 To run the script in the command line, type:
-python script_fig3u4.py replicates N VA rfm oFi oMi generationsN E2Ns
+python script_fig3u4.py replicates N VA rfm oi generationsN E2Ns path
 
 A usage example would be:
-python script_fig2u4.py 200 1000 40 0.95 0.15 0.15 20 1
+module load python
+python script_fig3u4.py 200 1000 40 0.95 0.15 20 1 full_path_to_ALREADY_CREATED_results_directory/
 
 #### INPUT
 
@@ -24,6 +25,7 @@ The arguments it takes correspond to:
     - oMi: coefficient for male optimum after the shift. The optimum itself is then calculated as oM = oMi*np.sqrt(2*N) (0.15)
     - generationsN: number of generations scaled by population size. The number of generations corresponds to generations = generationsN*N (20)
     - E2Ns: parameter modulating the average squared effect size of incoming mutations. It can take any value (E2Ns)
+    - path: the path where the results will be stored. The directory should be created before running the simulations. It should be of the type full_path_to_results_directory/
 
 We use the default values indicated in brackets for each argument, and run simulations for various combinations of those parameters where no default value is indicated:
     - rfm: typically, for rfm=0.5,0.8,0.95
@@ -99,7 +101,7 @@ def run_simulations_divergent_convergent (generations, q, N, VA, E2Ns, oF0, oM0,
 Since to output all the variables across generations for each replicate we'd need a 3D table, we are instead reporting averages and standard errors of the mean (SEM)
 across replicates for each variable, and storing them in a separate file.'''
 
-def run_simulations_divergent_convergent_reps (replicates, generations, q, N, VA, E2Ns, oF0, oM0, oF1, oM1, oF2, oM2):
+def run_simulations_divergent_convergent_reps (replicates, generations, q, N, VA, E2Ns, oF0, oM0, oF1, oM1, oF2, oM2, path):
     
     ST = timeit.default_timer()
     
@@ -117,7 +119,7 @@ def run_simulations_divergent_convergent_reps (replicates, generations, q, N, VA
     stderrs.columns=['meanFstderr','meanMstderr','varFstderr','varMstderr','covarstderr','rFMstderr', 'varAsharedstderr', 'varAspecstderr']
     df = pd.concat([means, stderrs], axis=1)
     
-    path = "RESULTS/"
+    #path = "RESULTS/"
     name = "ana8inf_%iN_%iNgen_%iReps_%.3fq_%iVA_%iE2Ns"%(N,int(generations/N),replicates,q,VA,E2Ns)
     
     version = save_version(df, path, name)
@@ -153,6 +155,7 @@ rfm = float(sys.argv[4])
 oFMi = float(sys.argv[5])
 generationsN = float(sys.argv[6])
 E2Ns = int(sys.argv[7])
+path = str(sys.argv[8])
 
 generations = int(generationsN * N)
 
@@ -167,10 +170,10 @@ oM1 = -oFMi * np.sqrt(2*N)
 q = (1-rfm)
 
 # Print the time at which simulations start running
-print (datetime.date.today(), datetime.datetime.now())
+#print (datetime.date.today(), datetime.datetime.now())
 startat = timeit.default_timer()
 # Run the simulations using the functions above and store results in file
-df = run_simulations_divergent_convergent_reps (replicates, generations, q, N, VA, E2Ns, oF0, oM0, oF1, oM1, oF2, oM2)
+df = run_simulations_divergent_convergent_reps (replicates, generations, q, N, VA, E2Ns, oF0, oM0, oF1, oM1, oF2, oM2, path)
 # Print the time taken to run the simulations
 print ("ALL RUN TIME: %f"%(timeit.default_timer() - startat))
 

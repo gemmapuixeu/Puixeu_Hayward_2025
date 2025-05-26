@@ -9,7 +9,7 @@ class Mutation(object):
     Parameters:
         scaled_size: (float) The scaled size of the mutation
         pheno_size_f, pheno_size_m: (float) The phenotypic effect size of the mutation in both sexes
-        sex: (string: f, m) The sex of the individual
+        sex: (string: f, m) The sex of the individual in which the mutation appears
         N: (int) The size of the population in which the mutation appears
     """
     

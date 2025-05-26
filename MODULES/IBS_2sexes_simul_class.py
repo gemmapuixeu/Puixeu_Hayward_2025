@@ -20,7 +20,9 @@ class SimulatePopulation(object):
         - U: Mutational rate (per gamete per generation)
         - optF, optM: sex-specific optima
         - q: proportion of sex-specific mutations. rfm = 1-q
-        - angle_s: angle determining the proportion of selection acting on each sex. We set it to pi/4 so that it is equal in both sexes
+        - angle_s: angle determining the proportion of selection acting on each sex
+                   Vsf/Vs =cos(angle_s) and Vsm/Vs=sin(angle_s)
+                   By default angle_s=pi/4 so that it is equal in both sexes
         - E2Ns: Expected steady-state scaled selection coeffecient of incoming mutations.
             We draw them from a gamma distribution with this expected value
             We typically work with two regimes: approximately infinitesimal (E2Ns=1) and multigenic (E2Ns=16)

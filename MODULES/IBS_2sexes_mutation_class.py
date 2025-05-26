@@ -57,7 +57,7 @@ class Mutation(object):
 
     def _var(self,sex=None):
         """
-        Returns the current contribution of the mutant to phenotypic variance in all dimensions.
+        Returns the current contribution of the mutant to phenotypic variance in both sexes.
         """
         if sex=="F": 
             x = self._frequency_class.x(sex="F", minor=False)
@@ -72,7 +72,7 @@ class Mutation(object):
 
     def _covar(self):
         """
-        Returns the current contribution of the mutant to phenotypic intersex covariance in all dimensions.
+        Returns the current contribution of the mutant to phenotypic intersex covariance in both sexes.
         This formula assumes HW (considers only overall x). We still need to derive the more general one.
         """
         af = self.PHENO_SIZE_HET_F

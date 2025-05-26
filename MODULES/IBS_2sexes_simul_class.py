@@ -344,7 +344,10 @@ class SimulatePopulation(object):
                 self.epsilon += [np.NaN]
                 self.Dt_a2 += [np.NaN]
                 self.Dt_d2 += [np.NaN]
-            # Without 1e-7 the division sometimes gives an error (division by zero)
+            # Without 1e-7 the division gives an error if V_a=0 (division by zero)
+            # It might occur in simulations where the mutation rate is extremely low. 
+            # If you’re actually going to run simulations in this regime a more rigorous solution
+            # should be found to deal with this problem. 
             self.Dt_a1 += [self.m3_a[-1]/(self.V_a[-1]+self.covarS[-1]+1e-7)*(1-self.epsilon[-1])]
             self.Dt_d1 += [self.m3_d[-1]/(self.V_a[-1]-self.covarS[-1]+1e-7)*(1-self.epsilon[-1])]
             self.Dt_a += [self.Dt_a1[-1]-self.Dt_a2[-1]]
